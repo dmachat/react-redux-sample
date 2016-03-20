@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-// import createHistory from 'history/lib/createBrowserHistory';
 
 // Import components
 import HomePage from './components/pages/HomePage';
