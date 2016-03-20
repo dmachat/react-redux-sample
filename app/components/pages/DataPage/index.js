@@ -22,10 +22,11 @@ class DataPage extends Component {
 
   dataList() {
     return this.props.data.items.map((item) => {
+      const boundClick = this.handleRemove.bind(this, item.key);
       return (
         <li key={item.key}>
           {item.label} - {item.value}
-          <a href="" onClick={ this.handleRemove.bind(this) }>
+          <a href onClick={boundClick}>
             remove
           </a>
         </li>
@@ -50,9 +51,9 @@ class DataPage extends Component {
     this.setState({ value: evt.target.value });
   }
 
-  handleRemove(evt) {
+  handleRemove(id, evt) {
     evt.preventDefault();
-    this.props.dispatch(triggerAction(types.REMOVE_DATA, evt.target.value));
+    this.props.dispatch(triggerAction(types.REMOVE_DATA, +id));
   }
 
   render() {
