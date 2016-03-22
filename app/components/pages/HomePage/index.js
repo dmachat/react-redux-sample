@@ -41,6 +41,6 @@ class HomePage extends Component {
 // Which props to inject from the global atomic state
 export default connect((state) => {
   return {
-    data: state,
+    data: state.data,
   };
 })(HomePage);

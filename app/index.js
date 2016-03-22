@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 // Import components
@@ -20,6 +21,9 @@ const store = createStore(rootReducer, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 ));
 
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store);
+
 // Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
 if (module.hot) {
   module.hot.accept('./reducers/rootReducer', () => {
@@ -31,7 +35,7 @@ if (module.hot) {
 // Set up routes for pages that are wrapped in the App component
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route component={App}>
         <Route path="/" component={HomePage} />
         <Route path="/data" component={DataPage} />

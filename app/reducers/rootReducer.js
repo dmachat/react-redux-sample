@@ -3,11 +3,11 @@
  * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
+import { combineReducers } from 'redux';
 import dataReducer from './dataReducer';
+import { routerReducer } from 'react-router-redux';
 
-// Replace line below once you have several reducers with
-// import { combineReducers } from 'redux';
-// const rootReducer = combineReducers({ dataReducer, secondReducer });
-const rootReducer = dataReducer;
-
-export default rootReducer;
+export default combineReducers({
+  data: dataReducer,
+  routing: routerReducer,
+});
