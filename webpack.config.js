@@ -1,6 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var nodeEnv = process.env.NODE_ENV || 'development';
+var isProd = nodeEnv === 'production';
+
+var productionPlugins = require('./config/production-plugins');
+var developmentPlugins = require('./config/development-plugins');
+
 module.exports = {
   devtool: 'eval',
   entry: [
@@ -13,14 +19,16 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+	plugins: [
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(nodeEnv) },
+    })
+  ].concat(isProd ? productionPlugins : developmentPlugins),
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'app')
-    }]
+      loaders: ['react-hot', 'babel?cacheDirectory&presets=["es2015","stage-0","react"]'],
+      include: path.join(__dirname, 'app'),
+    }],
   }
 };
