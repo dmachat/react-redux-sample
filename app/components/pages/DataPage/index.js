@@ -3,7 +3,7 @@
  * This is the initial landing page for our app.
  */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 
 import triggerAction from '../../../actions';
@@ -11,12 +11,15 @@ import * as types from '../../../constants';
 
 const defaultInput = {
   label: '',
-  value: null,
+  value: '',
 };
 
 class DataPage extends Component {
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleLabelChange = this.handleLabelChange.bind(this);
     this.state = defaultInput;
   }
 
@@ -61,17 +64,17 @@ class DataPage extends Component {
       <div>
         <h3>Data</h3>
 
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             value={this.state.label}
-            onChange={this.handleLabelChange.bind(this)}
+            onChange={this.handleLabelChange}
             placeholder="Data label">
           </input>
           <input
             type="number"
             value={this.state.value}
-            onChange={this.handleValueChange.bind(this)}
+            onChange={this.handleValueChange}
             placeholder="Data">
           </input>
           <input

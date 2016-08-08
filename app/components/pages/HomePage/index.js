@@ -3,7 +3,7 @@
  * This is the initial landing page for our app.
  */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import assignToEmpty from '../../../utils/assign';
 

@@ -1,10 +1,9 @@
 var webpack = require('webpack');
 
-module.export = [
+module.exports = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity,
-    filename: 'vendor.bundle.js',
   }),
   new webpack.LoaderOptionsPlugin({
     minimize: true,
@@ -13,10 +12,12 @@ module.export = [
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
+      screw_ie8: true,
     },
     output: {
       comments: false,
     },
     sourceMap: false,
   }),
+  new webpack.optimize.DedupePlugin(),
 ];
