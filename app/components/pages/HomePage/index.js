@@ -25,7 +25,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
     return (
       <div>
         <h3>Home</h3>

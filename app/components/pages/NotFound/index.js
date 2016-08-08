@@ -1,15 +1,10 @@
-import { Component } from 'react';
 import { Link } from 'react-router';
 
-class NotFound extends Component {
-  render() {
-    return (
-      <article>
-        <h1>Page not found.</h1>
-        <Link to="/">Home</Link>
-      </article>
-    );
-  }
+export default function NotFound() {
+  return (
+    <article>
+      <h1>Page not found.</h1>
+      <Link to="/">Home</Link>
+    </article>
+  );
 }
-
-export default NotFound;

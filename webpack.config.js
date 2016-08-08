@@ -51,7 +51,7 @@ module.exports = {
     filename: '[name].js',
     publicPath: assetPath,
   },
-	resolve: {
+  resolve: {
     extensions: ['', '.js', '.jsx'],
     modules: [
       path.resolve('./client'),
